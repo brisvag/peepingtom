@@ -1,6 +1,5 @@
 from .base import MultiBlock
 
-class TransformBlock(MultiBlock):
-    """
 
-    """
+class TransformBlock(MultiBlock):
+    pass

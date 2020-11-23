@@ -8,7 +8,8 @@ from ...utils.helpers import dataframe_helper
 
 
 class ParticleBlock(MultiBlock):
-    def __init__(self, positions: PointBlock, orientations: OrientationBlock, properties: PropertyBlock, **kwargs):
+    def __init__(self, positions: PointBlock, orientations: OrientationBlock,
+                 properties: PropertyBlock, **kwargs):
         self.positions = PointBlock(positions)
         self.orientations = OrientationBlock(orientations)
         self.properties = PropertyBlock(properties)
@@ -19,8 +20,8 @@ class ParticleBlock(MultiBlock):
         """
         Create a ParticleBlock instance from a DataFrame in a known mode
 
-        This method expects the DataFrame to already represent the desired subset of particles in the case where data
-        contains particles from multiple volumes
+        This method expects the DataFrame to already represent the desired subset of particles
+        in the case where data contains particles from multiple volumes
 
         Parameters
         ----------

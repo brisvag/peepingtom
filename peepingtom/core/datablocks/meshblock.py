@@ -60,5 +60,3 @@ class MeshBlock(DataBlock):
                     n midpoints in m dimensions
         """
         return self.triangles.mean(axis=1)
-
-

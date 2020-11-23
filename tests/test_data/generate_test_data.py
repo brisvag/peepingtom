@@ -26,7 +26,7 @@ with mrcfile.new(vol_path, overwrite=True) as mrc:
 
 # relion star file simple
 # coords for helix along z
-z = np.linspace(0.1, 6 * np.pi+0.1, 50)
+z = np.linspace(0.1, 6 * np.pi + 0.1, 50)
 # TODO: investigate why this doesn't work with 0
 x = 3 * np.sin(z)
 y = 3 * np.cos(z)
@@ -40,14 +40,15 @@ xyz_backbone = np.column_stack([x_backbone, y_backbone, z])
 
 # calculate directions from backbone to points on helix
 orientation_vectors = xyz - xyz_backbone
-orientation_vectors_normalised = orientation_vectors / np.linalg.norm(orientation_vectors, axis=1).reshape((-1, 1))
+orientation_vectors_norm = orientation_vectors / np.linalg.norm(orientation_vectors, axis=1).reshape((-1, 1))
 unit_z = np.array([0, 0, 1])
 
 # calculate rotation matrices to align unit vector to direction away from backbone
-rotation_matrices = align_vectors(unit_z, orientation_vectors_normalised)
+rotation_matrices = align_vectors(unit_z, orientation_vectors_norm)
 
 # calculate eulers from rotation matrices
-euler_angles_rln = matrix2euler(rotation_matrices, target_axes='ZYZ', target_positive_ccw=True, target_intrinsic=True)
+euler_angles_rln = matrix2euler(rotation_matrices, target_axes='ZYZ',
+                                target_positive_ccw=True, target_intrinsic=True)
 
 rot = euler_angles_rln[:, 0]
 tilt = euler_angles_rln[:, 1]
